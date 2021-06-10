@@ -2,10 +2,10 @@ window.addEventListener('DOMContentLoaded', event => {
 	if ('speechSynthesis' in window) {
 		var msg = new SpeechSynthesisUtterance();
 
-		let volume = 0;
-		let rate = 0;
-		let pitch = 0;
-		let voiceIndex = 0;
+		let volume = 1;
+		let rate = 0.7;
+		let pitch = 1;
+		let voiceIndex = 20;
 
 		let voicesList = document.getElementById('voice-list');
 
@@ -13,7 +13,11 @@ window.addEventListener('DOMContentLoaded', event => {
 		s.then(voices => {
 			console.log(voices);
 			voices.forEach((element, index) => {
-				voicesList.innerHTML += `<option value="${index}">${element.name}</option>`;
+				if (element.name === 'Microsoft Ravi - English (India)') {
+					voicesList.innerHTML += `<option value="${index}" selected>${element.name}</option>`;
+				} else {
+					voicesList.innerHTML += `<option value="${index}">${element.name}</option>`;
+				}
 			});
 		});
 
